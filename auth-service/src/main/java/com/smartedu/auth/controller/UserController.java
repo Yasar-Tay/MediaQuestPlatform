@@ -21,40 +21,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
 
   private final UserService userService;
 
-  @PreAuthorize("permitAll()")
-  @GetMapping("/user")
+  @PreAuthorize("hasRole('ADMIN')")
+  @GetMapping()
   public ResponseEntity<Page<UserResponse>> getUsers(
       @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable
   ) {
     return ResponseEntity.ok(userService.getAllUsers(pageable));
   }
 
-  @PreAuthorize("permitAll()")
-  @GetMapping("/user/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
+  @GetMapping("/{id}")
   public ResponseEntity<UserResponse> getUser(@PathVariable Long id){
     return ResponseEntity.ok(userService.getUserById(id));
   }
 
   @PreAuthorize("permitAll()")
-  @PostMapping("/user/register")
+  @PostMapping("/register")
   public ResponseEntity<UserResponse> registerUser(@RequestBody UserRequest userRequest){
     return ResponseEntity.ok(userService.saveUser(userRequest));
   }
 
-  @PreAuthorize("permitAll()")
-  @DeleteMapping("/user/delete/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
+  @DeleteMapping("/delete/{id}")
   public ResponseEntity<Map<String, String>> deleteUser(@PathVariable Long id){
     return ResponseEntity.ok(userService.removeUser(id));
   }
 
-  @PreAuthorize("permitAll()")
-  @PutMapping("/user/update/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
+  @PutMapping("/update/{id}")
   public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @RequestBody UserRequest userRequest){
     return ResponseEntity.ok(userService.updateUser(id, userRequest));
   }

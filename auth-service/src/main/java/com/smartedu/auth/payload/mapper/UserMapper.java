@@ -4,8 +4,10 @@ import com.smartedu.auth.entity.User;
 import com.smartedu.auth.payload.dto.UserRequest;
 import com.smartedu.auth.payload.dto.UserResponse;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 @Data
+@Component
 public class UserMapper {
 
   public UserResponse toUserResponse(User user){

@@ -25,7 +25,7 @@ public class UserService {
   private final UserMapper userMapper;
 
   private User findUserById(Long id){
-    return userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND, id)));
+    return userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessage.USER_WITH_ID_NOT_FOUND, id)));
   }
 
   private void validateUserExist(UserRequest userRequest) {
