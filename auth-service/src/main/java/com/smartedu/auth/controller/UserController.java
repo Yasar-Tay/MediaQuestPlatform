@@ -3,6 +3,7 @@ package com.smartedu.auth.controller;
 import com.smartedu.auth.payload.dto.UserRequest;
 import com.smartedu.auth.payload.dto.UserResponse;
 import com.smartedu.auth.service.UserService;
+import jakarta.validation.Valid;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -43,7 +44,7 @@ public class UserController {
 
   @PreAuthorize("permitAll()")
   @PostMapping("/register")
-  public ResponseEntity<UserResponse> registerUser(@RequestBody UserRequest userRequest){
+  public ResponseEntity<UserResponse> registerUser(@Valid @RequestBody UserRequest userRequest){
     return ResponseEntity.ok(userService.saveUser(userRequest));
   }
 
@@ -55,7 +56,7 @@ public class UserController {
 
   @PreAuthorize("hasRole('ADMIN')")
   @PutMapping("/update/{id}")
-  public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @RequestBody UserRequest userRequest){
+  public ResponseEntity<UserResponse> updateUser(@PathVariable Long id,@Valid @RequestBody UserRequest userRequest){
     return ResponseEntity.ok(userService.updateUser(id, userRequest));
   }
 

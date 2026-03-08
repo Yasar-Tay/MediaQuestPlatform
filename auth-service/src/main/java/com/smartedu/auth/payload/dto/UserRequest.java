@@ -3,6 +3,7 @@ package com.smartedu.auth.payload.dto;
 import com.smartedu.auth.entity.UserRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -14,7 +15,8 @@ public class UserRequest {
   @Size(min = 2, max = 40)
   private String username;
 
-  @Email
+  @NotBlank
+  @Email(message = "Email format is invalid")
   private String email;
 
   @NotBlank
@@ -22,7 +24,7 @@ public class UserRequest {
       message = "Password must contain upper, lower, digit and special char, min 8")
   private String password;
 
-  @NotBlank
+  @NotNull
   private UserRole userRole;
 
 }
