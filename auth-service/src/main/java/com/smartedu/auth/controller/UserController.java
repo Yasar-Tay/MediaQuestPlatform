@@ -42,12 +42,6 @@ public class UserController {
     return ResponseEntity.ok(userService.getUserById(id));
   }
 
-  @PreAuthorize("permitAll()")
-  @PostMapping("/register")
-  public ResponseEntity<UserResponse> registerUser(@Valid @RequestBody UserRequest userRequest){
-    return ResponseEntity.ok(userService.saveUser(userRequest));
-  }
-
   @PreAuthorize("hasRole('ADMIN')")
   @DeleteMapping("/delete/{id}")
   public ResponseEntity<Map<String, String>> deleteUser(@PathVariable Long id){
