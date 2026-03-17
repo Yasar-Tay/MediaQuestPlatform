@@ -1,5 +1,7 @@
 package com.smartedu.course_service.controller;
 
+import com.smartedu.course_service.dto.CreateCourseInput;
+import com.smartedu.course_service.dto.UpdateCourseInput;
 import com.smartedu.course_service.model.Course;
 import com.smartedu.course_service.service.CourseService;
 import java.util.List;
@@ -27,11 +29,19 @@ public class CourseGraphQLController {
 
   @MutationMapping
   public Course createCourse(
-      @Argument String id,
-      @Argument String title,
-      @Argument String description
+      @Argument CreateCourseInput input
   ) {
-    return courseService.createCourse(id, title, description);
+    return courseService.createCourse(input);
+  }
+
+  @MutationMapping
+  public Course updateCourse(@Argument UpdateCourseInput input){
+    return courseService.updateCourse(input);
+  }
+
+  @MutationMapping
+  public Course deleteCourse(@Argument String id){
+    return courseService.deleteCourse(id);
   }
 
 }

@@ -4,11 +4,25 @@ type Course {
     description: String
 }
 
+input CreateCourseInput {
+    id: ID!,
+    title: String!,
+    description: String!
+}
+
+input UpdateCourseInput {
+    id: ID!,
+    title: String,
+    description: String
+}
+
 type Query {
     courses: [Course]
     courseById(id: ID!): Course
 }
 
 type Mutation {
-    createCourse(id: ID!, title: String!, description: String!): Course
+    createCourse(input: CreateCourseInput!): Course
+    updateCourse(input: UpdateCourseInput!): Course
+    deleteCourse(id: ID!): Course
 }
