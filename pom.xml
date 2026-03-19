@@ -5,7 +5,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.smartedu</groupId>
+  <groupId>com.mediaquest</groupId>
   <artifactId>smart-education-platform</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
@@ -20,7 +20,7 @@
     <module>discovery-server</module>
     <module>api-gateway</module>
     <module>auth-service</module>
-    <module>course-service</module>
+    <module>content-service</module>
     <module>certificate-client-service</module>
     <module>certificate-soap-server</module>
   </modules>

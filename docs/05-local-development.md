@@ -2,34 +2,29 @@
 
 ## Requirements
 
-Install the following tools:
+Install:
 
 * Java 17
 * Maven
 * Docker
 * Docker Compose
 
-## Running the System
+## Current Local Setup
 
-Clone the repository:
+At the moment:
 
-```bash
-git clone https://github.com/your-repo/smart-education-platform
-```
+* PostgreSQL is run through Docker
+* services can be started locally from the IDE or terminal
 
-Start services:
+## Active Service Ports
 
-```bash
-docker-compose up
-```
+| Service | Port |
+| --- | --- |
+| `discovery-server` | `8761` |
+| `api-gateway` | `8080` |
+| `auth-service` | `8081` |
+| `content-service` | `8082` |
 
-## Service Ports
+## Notes
 
-| Service                 | Port |
-| ----------------------- | ---- |
-| discovery-server        | 8761 |
-| api-gateway             | 8080 |
-| auth-service            | 8081 |
-| course-service          | 8082 |
-| certificate-service     | 8083 |
-| certificate-soap-server | 8084 |
+The current `docker-compose.yml` is intentionally minimal and mainly supports the database layer during local development.

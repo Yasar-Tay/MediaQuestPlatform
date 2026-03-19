@@ -5,37 +5,36 @@
 * Spring Boot
 * Spring Cloud
 
-## Communication
+## Communication Styles
 
-* REST APIs
+* REST
 * GraphQL
-* SOAP Web Services
+
+## Security
+
+* Spring Security
+* JWT
 
 ## Databases
 
-PostgreSQL
+### PostgreSQL
 
-Used for:
+Used today for:
 
-* Users
-* Roles
-* Enrollments
+* users
+* authentication data
 
-MongoDB
+### MongoDB
 
-Used for:
+Planned to be used for:
 
-* Courses
-* Lessons
-* Comments
+* media/content data
+* possibly quest-related document-style data
 
 ## Infrastructure
 
 * Docker
 * Docker Compose
+* Eureka Service Discovery
+* Spring Cloud Gateway
 
-## Observability (Future)
-
-* OpenTelemetry
-* Jaeger
-* ELK Stack

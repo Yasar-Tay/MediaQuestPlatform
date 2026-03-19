@@ -1,33 +1,42 @@
 # System Architecture
 
-The platform follows a microservice architecture where each service is responsible for a specific business domain.
+The platform follows a microservice architecture where each service owns a focused business responsibility.
 
-## High-Level Architecture
+## High-Level Flow
 
-Client requests flow through the API Gateway which routes them to the appropriate services.
-
-Architecture Flow:
-
-Client → API Gateway → Microservices → Databases
+Client -> API Gateway -> Microservices -> Datastores
 
 ## Core Components
 
 ### API Gateway
 
-Handles:
+Responsible for:
 
-* Routing
-* Authentication validation
-* Request filtering
+* routing
+* gateway-level JWT validation
+* protected vs public endpoint separation
 
 ### Service Discovery
 
-The discovery server allows services to dynamically locate each other using service names instead of static addresses.
+The discovery server allows services to locate each other by service name.
 
-### Microservices
+### Auth Service
 
-Each service owns its data and is responsible for its own business logic.
+Responsible for:
 
-### External SOAP System
+* registration
+* login
+* JWT generation
+* current-user lookup
+* admin-only user management
 
-The certificate service communicates with a SOAP server simulating an external government certificate system.
+### Content Prototype Service
+
+The current `content-service` acts as a GraphQL prototype and is planned to evolve into a content-focused media service.
+
+### Future Quest and AI Services
+
+The current certificate-related modules are planned to be repurposed into:
+
+* `quest-service`
+* `ai-service`

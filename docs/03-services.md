@@ -2,73 +2,84 @@
 
 ## discovery-server
 
-Service discovery server using Netflix Eureka.
+Service discovery using Netflix Eureka.
 
 Responsibilities:
 
-* Register services
-* Provide service lookup
+* service registration
+* service lookup
 
-Default Port: 8761
+Default Port: `8761`
 
 ---
 
 ## api-gateway
 
-Entry point for all client requests.
+Entry point for client requests.
 
 Responsibilities:
 
-* Routing requests to services
-* Security filtering
-* Rate limiting
+* routing
+* JWT validation at the gateway
+* protecting non-public routes
 
-Default Port: 8080
+Default Port: `8080`
 
 ---
 
 ## auth-service
 
-Handles authentication and authorization.
+Authentication and user management service.
 
 Responsibilities:
 
-* User registration
-* Login
+* user registration
+* login
 * JWT token generation
-* Role management
+* current-user endpoint
+* admin-only user management
 
 Database: PostgreSQL
 
----
-
-## course-service
-
-Handles course content management.
-
-Responsibilities:
-
-* Create courses
-* Manage lessons
-* Query course structures
-
-API Style: GraphQL
-Database: MongoDB
+Default Port: `8081`
 
 ---
 
-## certificate-service
+## content-service
 
-Responsible for generating certificates after course completion.
+Current GraphQL prototype service.
 
-Responsibilities:
+Responsibilities today:
 
-* Trigger certificate generation
-* Call external SOAP service
-* Handle retry logic
+* GraphQL CRUD
+* in-memory content-like data
+
+Planned direction:
+
+* become `content-service`
+* manage media metadata
+* support discovery and recommendation flows
+
+Default Port: `8082`
+
+---
+
+## certificate-client-service
+
+Currently a placeholder module.
+
+Planned direction:
+
+* become `quest-service`
+* manage quests, quest steps, and user progress
 
 ---
 
 ## certificate-soap-server
 
-Mock external SOAP server representing an external government certificate system.
+Currently a placeholder module from the earlier concept.
+
+Planned direction:
+
+* become `ai-service`
+* support intent parsing, roadmap generation, summaries, and recommendations

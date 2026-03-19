@@ -16,11 +16,13 @@ spring:
           - id: auth-service-user
             uri: lb://AUTH-SERVICE
             predicates:
-              - Path=/user/**
-          - id: course-service
-            uri: lb://COURSE-SERVICE
+              - Path=/users/**
+          - id: content-service-graphql
+            uri: lb://CONTENT-SERVICE
             predicates:
-              - Path=/courses/**
+              - Path=/content-graphql
+            filters:
+              - SetPath=/graphql
 
 
 eureka:

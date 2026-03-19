@@ -1,23 +1,27 @@
 # Project Overview
 
-The Smart Education Platform is designed as a microservice-based system demonstrating modern backend architecture practices.
+Media Quest Platform is a microservice-based backend project focused on guided media discovery rather than traditional school automation.
 
-The system allows users to:
+The product direction is:
 
-* Register and authenticate
-* Browse and enroll in courses
-* Complete course content
-* Receive certificates after completion
+* users describe what they want to learn or explore
+* the platform generates a guided path or quest
+* media content is attached to each step
+* progress can be tracked over time
+* AI and chatbot support can later make the experience more adaptive
 
-The platform integrates multiple communication styles including REST APIs, GraphQL queries, and SOAP-based legacy system interaction.
+## Current Objectives
 
-## Objectives
+This project currently demonstrates:
 
-This project demonstrates:
-
-* Microservice architecture design
-* Service discovery
+* microservice architecture
+* service discovery
 * API gateway routing
-* Distributed communication
-* Integration with external SOAP services
-* Database-per-service pattern
+* JWT-based authentication
+* GraphQL-based content APIs
+* database-per-service thinking
+
+## Product Shift
+
+The repository started with an education-oriented concept, but the current roadmap is moving toward a more modern media and discovery platform aimed at a younger audience.
+
