@@ -2,10 +2,10 @@ package com.mediaquest.content.service;
 
 import com.mediaquest.content.dto.CreateContentInput;
 import com.mediaquest.content.dto.UpdateContentInput;
+import com.mediaquest.content.model.ContentProvider;
 import com.mediaquest.content.model.DifficultyLevel;
 import com.mediaquest.content.model.MediaContent;
 import com.mediaquest.content.model.MediaType;
-import com.mediaquest.content.model.SourceType;
 import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +22,13 @@ public class ContentService {
         .id("1")
         .title("Beat Making Basics")
         .description("A beginner-friendly introduction to building your first beat.")
+        .provider(ContentProvider.YOUTUBE)
         .mediaType(MediaType.VIDEO)
         .mediaUrl("https://example.com/media/beat-making-basics")
         .thumbnailUrl("https://example.com/thumbs/beat-making-basics.jpg")
         .tags(List.of("music", "beat-making", "beginner"))
         .difficulty(DifficultyLevel.BEGINNER)
         .durationSeconds(720)
-        .sourceType(SourceType.EXTERNAL)
         .creatorName("Quest Studio")
         .build());
 
@@ -36,13 +36,13 @@ public class ContentService {
         .id("2")
         .title("Creative Focus Audio Session")
         .description("A short guided audio session for staying focused while creating.")
-        .mediaType(MediaType.AUDIO)
+        .provider(ContentProvider.INTERNAL)
+        .mediaType(MediaType.PODCAST)
         .mediaUrl("https://example.com/media/creative-focus-session")
         .thumbnailUrl("https://example.com/thumbs/creative-focus-session.jpg")
         .tags(List.of("focus", "audio", "creator-mindset"))
         .difficulty(DifficultyLevel.BEGINNER)
         .durationSeconds(480)
-        .sourceType(SourceType.INTERNAL)
         .creatorName("Media Quest")
         .build());
   }
@@ -75,13 +75,13 @@ public class ContentService {
         .id(input.getId())
         .title(input.getTitle())
         .description(input.getDescription())
+        .provider(input.getProvider())
         .mediaType(input.getMediaType())
         .mediaUrl(input.getMediaUrl())
         .thumbnailUrl(input.getThumbnailUrl())
         .tags(input.getTags())
         .difficulty(input.getDifficulty())
         .durationSeconds(input.getDurationSeconds())
-        .sourceType(input.getSourceType())
         .creatorName(input.getCreatorName())
         .build();
 
@@ -102,6 +102,9 @@ public class ContentService {
     if (input.getDescription() != null) {
       content.setDescription(input.getDescription());
     }
+    if (input.getProvider() != null) {
+      content.setProvider(input.getProvider());
+    }
     if (input.getMediaType() != null) {
       content.setMediaType(input.getMediaType());
     }
@@ -119,9 +122,6 @@ public class ContentService {
     }
     if (input.getDurationSeconds() != null) {
       content.setDurationSeconds(input.getDurationSeconds());
-    }
-    if (input.getSourceType() != null) {
-      content.setSourceType(input.getSourceType());
     }
     if (input.getCreatorName() != null) {
       content.setCreatorName(input.getCreatorName());

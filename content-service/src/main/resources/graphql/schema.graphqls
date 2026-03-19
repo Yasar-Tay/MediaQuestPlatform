@@ -1,8 +1,19 @@
+enum ContentProvider {
+    INTERNAL
+    YOUTUBE
+    VIMEO
+    SPOTIFY
+    MEDIUM
+    OTHER
+}
+
 enum MediaType {
     VIDEO
-    AUDIO
-    SHORT
-    STREAM
+    ARTICLE
+    PODCAST
+    PLAYLIST
+    COURSE
+    DOCUMENT
 }
 
 enum DifficultyLevel {
@@ -11,23 +22,17 @@ enum DifficultyLevel {
     ADVANCED
 }
 
-enum SourceType {
-    INTERNAL
-    EXTERNAL
-    YOUTUBE
-}
-
 type MediaContent {
     id: ID
     title: String
     description: String
+    provider: ContentProvider
     mediaType: MediaType
     mediaUrl: String
     thumbnailUrl: String
     tags: [String]
     difficulty: DifficultyLevel
     durationSeconds: Int
-    sourceType: SourceType
     creatorName: String
 }
 
@@ -35,13 +40,13 @@ input CreateContentInput {
     id: ID!
     title: String!
     description: String!
+    provider: ContentProvider!
     mediaType: MediaType!
     mediaUrl: String!
     thumbnailUrl: String
     tags: [String!]
     difficulty: DifficultyLevel!
     durationSeconds: Int
-    sourceType: SourceType!
     creatorName: String
 }
 
@@ -49,13 +54,13 @@ input UpdateContentInput {
     id: ID!
     title: String
     description: String
+    provider: ContentProvider
     mediaType: MediaType
     mediaUrl: String
     thumbnailUrl: String
     tags: [String!]
     difficulty: DifficultyLevel
     durationSeconds: Int
-    sourceType: SourceType
     creatorName: String
 }
 

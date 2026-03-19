@@ -65,6 +65,59 @@ The current GraphQL prototype in `content-service` supports:
 
 This service is still in an in-memory prototype stage and is expected to be reshaped into a media/content service.
 
+## Example GraphQL Content Flow
+
+The content model is now centered around:
+
+* `provider`
+* `mediaType`
+
+Example mutation:
+
+```graphql
+mutation CreateContent {
+  createContent(
+    input: {
+      id: "mc-101"
+      title: "Guitar Chords for Beginners"
+      description: "A simple introduction to first-position guitar chords."
+      provider: YOUTUBE
+      mediaType: VIDEO
+      mediaUrl: "https://youtube.com/watch?v=example"
+      thumbnailUrl: "https://img.youtube.com/vi/example/maxresdefault.jpg"
+      tags: ["guitar", "music", "beginner"]
+      difficulty: BEGINNER
+      durationSeconds: 900
+      creatorName: "Media Quest"
+    }
+  ) {
+    id
+    title
+    provider
+    mediaType
+  }
+}
+```
+
+Example query:
+
+```graphql
+query GetContents {
+  contents {
+    id
+    title
+    provider
+    mediaType
+    difficulty
+  }
+}
+```
+
+Typical endpoints during development:
+
+* direct service endpoint: `http://localhost:8082/graphql`
+* gateway endpoint: `http://localhost:8080/content-graphql`
+
 ## Planned Product Direction
 
 The target concept is a **Media Quest Platform**:

@@ -60,6 +60,12 @@ Planned direction:
 * manage media metadata
 * support discovery and recommendation flows
 
+Current content modeling direction:
+
+* use `provider` to represent where content comes from
+* use `mediaType` to represent the format of the content
+* evolve from course-shaped sample data into reusable `MediaContent` records
+
 Default Port: `8082`
 
 ---

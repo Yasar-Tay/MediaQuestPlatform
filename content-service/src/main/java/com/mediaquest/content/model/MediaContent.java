@@ -14,12 +14,12 @@ public class MediaContent {
   private String id;
   private String title;
   private String description;
+  private ContentProvider provider;
   private MediaType mediaType;
   private String mediaUrl;
   private String thumbnailUrl;
   private List<String> tags;
   private DifficultyLevel difficulty;
   private Integer durationSeconds;
-  private SourceType sourceType;
   private String creatorName;
 }
