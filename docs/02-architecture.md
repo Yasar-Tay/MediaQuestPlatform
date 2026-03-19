@@ -6,6 +6,10 @@ The platform follows a microservice architecture where each service owns a focus
 
 Client -> API Gateway -> Microservices -> Datastores
 
+Planned guided-learning flow:
+
+Client -> API Gateway -> Quest/Chat flow -> AI intent analysis -> Content lookup -> Progress tracking -> Certificate validation
+
 ## Core Components
 
 ### API Gateway
@@ -34,9 +38,35 @@ Responsible for:
 
 The current `content-service` acts as a GraphQL prototype and is planned to evolve into a content-focused media service.
 
-### Future Quest and AI Services
+### Future Quest Service
 
-The current certificate-related modules are planned to be repurposed into:
+The planned `quest-service` will be responsible for:
 
-* `quest-service`
-* `ai-service`
+* creating quests from interpreted user intent
+* managing quest steps
+* tracking user progress
+* coordinating with content and certification services
+
+### Future AI Service
+
+The planned `ai-service` will be responsible for:
+
+* chatbot-oriented intent extraction
+* quest-outline generation
+* summaries and recommendations
+* future adaptive guidance features
+
+### Certificate SOAP Services
+
+The current certificate-related modules are planned to support SOAP-based certification workflows:
+
+* `certificate-client-service`
+  SOAP client integration used to request validation and certificate issuance
+* `certificate-soap-server`
+  SOAP server acting as the certification authority
+
+Planned certificate SOAP responsibilities:
+
+* validate quest completion
+* issue completion certificates
+* verify previously issued certificates

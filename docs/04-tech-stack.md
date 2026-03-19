@@ -9,6 +9,7 @@
 
 * REST
 * GraphQL
+* SOAP
 
 ## Security
 
@@ -37,4 +38,4 @@ Planned to be used for:
 * Docker Compose
 * Eureka Service Discovery
 * Spring Cloud Gateway
-
+* Spring Web Services

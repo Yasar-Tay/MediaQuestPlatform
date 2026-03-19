@@ -3,9 +3,10 @@
 Planned next improvements for the Media Quest Platform direction:
 
 * continue refining `content-service` around Media Quest content discovery and metadata ingestion
-* repurpose certificate-related modules into quest and AI services
+* introduce a dedicated `quest-service` for quest generation and progress tracking
+* introduce a dedicated `ai-service` for chatbot intent extraction and AI assistance
+* evolve certificate-related modules into SOAP-based completion validation and certificate issuance services
 * move in-memory GraphQL content data to MongoDB
-* introduce quest generation and user progress tracking
 * add chatbot orchestration
 * add AI-assisted summaries, tagging, and recommendations
 * improve observability

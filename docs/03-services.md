@@ -66,20 +66,49 @@ Default Port: `8082`
 
 ## certificate-client-service
 
-Currently a placeholder module.
+Planned SOAP client integration service.
 
-Planned direction:
+Responsibilities:
 
-* become `quest-service`
-* manage quests, quest steps, and user progress
+* call the certificate SOAP server
+* request quest completion validation
+* request certificate issuance
+* forward certificate verification requests when needed
 
 ---
 
 ## certificate-soap-server
 
-Currently a placeholder module from the earlier concept.
+Planned SOAP server for certification workflows.
 
-Planned direction:
+Responsibilities:
 
-* become `ai-service`
-* support intent parsing, roadmap generation, summaries, and recommendations
+* validate quest completion eligibility
+* issue completion certificates
+* verify certificate authenticity
+
+---
+
+## future quest-service
+
+Planned REST service for guided learning flows.
+
+Responsibilities:
+
+* create quests from interpreted user requests
+* manage quest steps and states
+* track user progress
+* coordinate with content and certificate services
+
+---
+
+## future ai-service
+
+Planned REST service for AI-assisted learning flows.
+
+Responsibilities:
+
+* interpret chatbot messages
+* extract structured learning intent
+* generate quest outlines
+* support summaries and recommendations
