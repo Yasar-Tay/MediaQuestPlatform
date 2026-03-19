@@ -1,0 +1,73 @@
+enum MediaType {
+    VIDEO
+    AUDIO
+    SHORT
+    STREAM
+}
+
+enum DifficultyLevel {
+    BEGINNER
+    INTERMEDIATE
+    ADVANCED
+}
+
+enum SourceType {
+    INTERNAL
+    EXTERNAL
+    YOUTUBE
+}
+
+type MediaContent {
+    id: ID
+    title: String
+    description: String
+    mediaType: MediaType
+    mediaUrl: String
+    thumbnailUrl: String
+    tags: [String]
+    difficulty: DifficultyLevel
+    durationSeconds: Int
+    sourceType: SourceType
+    creatorName: String
+}
+
+input CreateContentInput {
+    id: ID!
+    title: String!
+    description: String!
+    mediaType: MediaType!
+    mediaUrl: String!
+    thumbnailUrl: String
+    tags: [String!]
+    difficulty: DifficultyLevel!
+    durationSeconds: Int
+    sourceType: SourceType!
+    creatorName: String
+}
+
+input UpdateContentInput {
+    id: ID!
+    title: String
+    description: String
+    mediaType: MediaType
+    mediaUrl: String
+    thumbnailUrl: String
+    tags: [String!]
+    difficulty: DifficultyLevel
+    durationSeconds: Int
+    sourceType: SourceType
+    creatorName: String
+}
+
+type Query {
+    contents: [MediaContent]
+    contentById(id: ID!): MediaContent
+    contentsByTag(tag: String!): [MediaContent]
+    contentsByDifficulty(level: DifficultyLevel!): [MediaContent]
+}
+
+type Mutation {
+    createContent(input: CreateContentInput!): MediaContent
+    updateContent(input: UpdateContentInput!): MediaContent
+    deleteContent(id: ID!): MediaContent
+}
