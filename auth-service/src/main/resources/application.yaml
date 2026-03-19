@@ -11,9 +11,9 @@ spring:
     name: auth-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/smartedu_db
-    username: smartedu_user
-    password: smartedu_password
+    url: jdbc:postgresql://localhost:5433/mediaquest_db
+    username: mediaquest_user
+    password: mediaquest_password
     driver-class-name: org.postgresql.Driver
 
   jpa:

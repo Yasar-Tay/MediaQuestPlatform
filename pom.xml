@@ -6,11 +6,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.mediaquest</groupId>
-  <artifactId>smart-education-platform</artifactId>
+  <artifactId>media-quest-platform</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
 
-  <name>smart-education-platform</name>
+  <name>media-quest-platform</name>
 
   <!-- ========================= -->
   <!-- Modules -->

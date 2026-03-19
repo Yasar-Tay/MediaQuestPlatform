@@ -2,9 +2,9 @@ services:
   postgres:
     image: postgres:17-alpine
     environment:
-      POSTGRES_DB: smartedu_db
-      POSTGRES_USER: smartedu_user
-      POSTGRES_PASSWORD: smartedu_password
+      POSTGRES_DB: mediaquest_db
+      POSTGRES_USER: mediaquest_user
+      POSTGRES_PASSWORD: mediaquest_password
     ports:
       - "5433:5432"
     volumes:
