@@ -2,23 +2,33 @@ package com.mediaquest.content.service;
 
 import com.mediaquest.content.dto.CreateContentInput;
 import com.mediaquest.content.dto.UpdateContentInput;
+import com.mediaquest.content.exception.ContentNotFoundException;
 import com.mediaquest.content.model.ContentProvider;
 import com.mediaquest.content.model.DifficultyLevel;
 import com.mediaquest.content.model.MediaContent;
 import com.mediaquest.content.model.MediaType;
+import com.mediaquest.content.payload.ErrorMessages;
+import com.mediaquest.content.repository.ContentRepository;
 import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ContentService {
 
-  private final List<MediaContent> contents = new ArrayList<>();
+  private final ContentRepository contentRepository;
 
   @PostConstruct
   public void init() {
-    contents.add(MediaContent.builder()
+
+    if (contentRepository.count() > 0) {
+      return;
+    }
+
+    contentRepository.save(MediaContent.builder()
         .id("1")
         .title("Beat Making Basics")
         .description("A beginner-friendly introduction to building your first beat.")
@@ -32,7 +42,7 @@ public class ContentService {
         .creatorName("Quest Studio")
         .build());
 
-    contents.add(MediaContent.builder()
+    contentRepository.save(MediaContent.builder()
         .id("2")
         .title("Creative Focus Audio Session")
         .description("A short guided audio session for staying focused while creating.")
@@ -48,26 +58,31 @@ public class ContentService {
   }
 
   public List<MediaContent> getAllContents() {
-    return contents;
+    return contentRepository.findAll();
   }
 
   public MediaContent getContentById(String id) {
-    return contents.stream()
-        .filter(content -> content.getId().equals(id))
-        .findFirst()
-        .orElse(null);
+    return contentRepository.findById(id)
+        .orElseThrow(() -> new ContentNotFoundException(
+            String.format(ErrorMessages.CONTENT_NOT_FOUND_BY_ID, id)));
   }
 
   public List<MediaContent> getContentsByTag(String tag) {
-    return contents.stream()
-        .filter(content -> content.getTags() != null && content.getTags().contains(tag))
-        .toList();
+    List<MediaContent> contents = contentRepository.findByTagsContaining(tag);
+    if (contents.isEmpty()) {
+      throw new ContentNotFoundException(
+          String.format(ErrorMessages.CONTENT_NOT_FOUND_BY_TAG, tag));
+    }
+    return contents;
   }
 
   public List<MediaContent> getContentsByDifficulty(DifficultyLevel level) {
-    return contents.stream()
-        .filter(content -> content.getDifficulty() == level)
-        .toList();
+    List<MediaContent> contents = contentRepository.findByDifficulty(level);
+    if (contents.isEmpty()) {
+      throw new ContentNotFoundException(
+          String.format(ErrorMessages.CONTENT_NOT_FOUND_BY_DIFFICULTY, level));
+    }
+    return contents;
   }
 
   public MediaContent createContent(CreateContentInput input) {
@@ -85,16 +100,11 @@ public class ContentService {
         .creatorName(input.getCreatorName())
         .build();
 
-    contents.add(content);
-    return content;
+    return contentRepository.save(content);
   }
 
   public MediaContent updateContent(UpdateContentInput input) {
     MediaContent content = getContentById(input.getId());
-
-    if (content == null) {
-      return null;
-    }
 
     if (input.getTitle() != null) {
       content.setTitle(input.getTitle());
@@ -127,16 +137,13 @@ public class ContentService {
       content.setCreatorName(input.getCreatorName());
     }
 
-    return content;
+    return contentRepository.save(content);
   }
 
   public MediaContent deleteContent(String id) {
     MediaContent content = getContentById(id);
-    if (content == null) {
-      return null;
-    }
 
-    contents.remove(content);
+    contentRepository.delete(content);
     return content;
   }
 }

@@ -158,6 +158,12 @@ Current local setup:
 
 `docker-compose.yml` currently provides PostgreSQL only.
 
+Environment example:
+
+* root `.env` includes `MONGODB_URI=mongodb://localhost:27017/mediaquest_content_db`
+* Docker Compose reads `.env` automatically
+* when running Spring Boot services from the IDE or terminal, the same value may still need to be provided as a real environment variable depending on how the app is launched
+
 ## Immediate Next Steps
 
 The most likely next technical steps are:

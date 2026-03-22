@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: content-service
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/mediaquest_content_db}
+      auto-index-creation: true
 
 eureka:
   client:

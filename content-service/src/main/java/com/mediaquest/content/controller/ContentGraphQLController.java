@@ -19,22 +19,22 @@ public class ContentGraphQLController {
   private final ContentService contentService;
 
   @QueryMapping
-  public List<MediaContent> contents() {
+  public List<MediaContent> getContents() {
     return contentService.getAllContents();
   }
 
   @QueryMapping
-  public MediaContent contentById(@Argument String id) {
+  public MediaContent getContentById(@Argument String id) {
     return contentService.getContentById(id);
   }
 
   @QueryMapping
-  public List<MediaContent> contentsByTag(@Argument String tag) {
+  public List<MediaContent> getContentsByTag(@Argument String tag) {
     return contentService.getContentsByTag(tag);
   }
 
   @QueryMapping
-  public List<MediaContent> contentsByDifficulty(@Argument DifficultyLevel level) {
+  public List<MediaContent> getContentsByDifficulty(@Argument DifficultyLevel level) {
     return contentService.getContentsByDifficulty(level);
   }
 

@@ -65,10 +65,10 @@ input UpdateContentInput {
 }
 
 type Query {
-    contents: [MediaContent]
-    contentById(id: ID!): MediaContent
-    contentsByTag(tag: String!): [MediaContent]
-    contentsByDifficulty(level: DifficultyLevel!): [MediaContent]
+    getContents: [MediaContent]
+    getContentById(id: ID!): MediaContent
+    getContentsByTag(tag: String!): [MediaContent]
+    getContentsByDifficulty(level: DifficultyLevel!): [MediaContent]
 }
 
 type Mutation {
